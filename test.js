@@ -1,3 +1,12 @@
+// Import module 'readline' untuk membaca input dari command line
+const readline = require('readline');
+
+// Membuat interface readline
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
 // Fungsi untuk menghitung umur
 function hitungUmur(tanggalLahir) {
     // Ubah input menjadi objek Date
@@ -22,8 +31,13 @@ function hitungUmur(tanggalLahir) {
     return umur;
 }
 
-// Contoh penggunaan fungsi hitungUmur
-let tanggalLahir = '1995-06-15'; // Format: 'YYYY-MM-DD'
-let umur = hitungUmur(tanggalLahir);
 
-console.log('Umur Anda: ' + umur + ' tahun');
+// Menanyakan tanggal lahir kepada pengguna
+rl.question('Masukkan tanggal lahir Anda (format: YYYY-MM-DD): ', (tanggalLahir) => {
+    // Memanggil fungsi hitungUmur dan menampilkan hasilnya
+    let umur = hitungUmur(tanggalLahir);
+    console.log('Umur Anda: ' + umur + ' tahun');
+    
+    // Menutup interface readline
+    rl.close();
+});
