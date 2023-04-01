@@ -31,12 +31,23 @@ function hitungUmur(tanggalLahir) {
     return umur;
 }
 
+// Fungsi untuk memvalidasi format tanggal lahir
+function validasiTanggalLahir(tanggalLahir) {
+    const regex = /^\d{4}-\d{2}-\d{2}$/;
+    return regex.test(tanggalLahir);
+}
+
+
 
 // Menanyakan tanggal lahir kepada pengguna
 rl.question('Masukkan tanggal lahir Anda (format: YYYY-MM-DD): ', (tanggalLahir) => {
-    // Memanggil fungsi hitungUmur dan menampilkan hasilnya
-    let umur = hitungUmur(tanggalLahir);
-    console.log('Umur Anda: ' + umur + ' tahun');
+    if (validasiTanggalLahir(tanggalLahir)) {
+        // Memanggil fungsi hitungUmur dan menampilkan hasilnya
+        let umur = hitungUmur(tanggalLahir);
+        console.log('Umur Anda: ' + umur + ' tahun');
+    } else {
+        console.log('Format tanggal lahir tidak valid. Silakan masukkan dalam format: YYYY-MM-DD');
+    }
     
     // Menutup interface readline
     rl.close();
